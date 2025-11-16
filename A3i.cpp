@@ -1,8 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <random>
 
 using namespace std;
+
+random_device rd;
+mt19937 mt(rd());
 
 // Insertion sort
 void insertionSort(vector<int>& arr, int l, int r) {
@@ -61,8 +65,11 @@ void heapSort(vector<int> &v, const int l, const int r) {
 
 // Quick sort
 int partition(vector<int>& arr, int l, int r) {
+    uniform_int_distribution<> dis(l, r);
+    int pivotIndex = dis(mt);
 
-    const int pivot = arr[r];
+    const int pivot = arr[pivotIndex];
+    swap(arr[pivotIndex], arr[r]);
 
     int i = l - 1;
 
